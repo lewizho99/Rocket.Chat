@@ -263,40 +263,40 @@ const toolbarButtons = (user) => [{
 			columns: [
 				{
 					groups: [
-                        {
-                            title: t('User'),
-                            items: [
+						{
+							title: t('User'),
+							items: [
 								{
 									icon: 'circle',
 									name: t('happy'),
 									modifier: 'online',
 									action: () => {
-                                        console.log('online => Lewis METUGE NGALAME @ 04 Startups');
-                                    },
+										console.log('online => Lewis METUGE NGALAME @ 04 Startups');
+									},
 								},
 								{
 									icon: 'circle',
 									name: t('uncertain'),
 									modifier: 'away',
 									action: () => {
-                                        console.log('online => Lewis METUGE NGALAME @ 04 Startups');
-                                    },
+										console.log('online => Lewis METUGE NGALAME @ 04 Startups');
+									},
 								},
 								{
 									icon: 'circle',
 									name: t('sad'),
 									modifier: 'busy',
 									action: () => {
-                                        console.log('online => Lewis METUGE NGALAME @ 04 Startups');
-                                    },
+										console.log('online => Lewis METUGE NGALAME @ 04 Startups');
+									},
 								},
 								{
 									icon: 'circle',
 									name: t('confused'),
 									modifier: 'offline',
 									action: () => {
-                                        console.log('online => Lewis METUGE NGALAME @ 04 Startups');
-                                    },
+										console.log('online => Lewis METUGE NGALAME @ 04 Startups');
+									},
 								},
 							],
                         },
