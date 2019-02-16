@@ -236,6 +236,108 @@ const toolbarButtons = (user) => [{
 
 		popover.open(config);
 	},
+},{
+	name: t('User Mood'),
+	icon: 'emoji',
+	condition: () => AccountBox.getItems().length || hasAtLeastOnePermission(['manage-emoji', 'manage-integrations', 'manage-oauth-apps', 'manage-own-integrations', 'manage-sounds', 'view-logs', 'view-privileged-setting', 'view-room-administration', 'view-statistics', 'view-user-administration']),
+	action: (e) => {
+		let adminOption;
+		if (hasAtLeastOnePermission(['manage-emoji', 'manage-integrations', 'manage-oauth-apps', 'manage-own-integrations', 'manage-sounds', 'view-logs', 'view-privileged-setting', 'view-room-administration', 'view-statistics', 'view-user-administration'])) {
+			adminOption = {
+				icon: 'customize',
+				name: t('Administration'),
+				type: 'open',
+				id: 'administration',
+				action: () => {
+					SideNav.setFlex('adminFlex');
+					SideNav.openFlex();
+					FlowRouter.go('admin-info');
+					popover.close();
+				},
+			};
+		}
+
+		const config = {
+			popoverClass: 'sidebar-header',
+			columns: [
+				{
+					groups: [
+                        {
+                            title: t('User'),
+                            items: [
+								{
+									icon: 'circle',
+									name: t('happy'),
+									modifier: 'online',
+									action: (e) => {
+                                        console.log('online => Lewis METUGE NGALAME @ 04 Startups');
+                                    },
+								},
+								{
+									icon: 'circle',
+									name: t('uncertain'),
+									modifier: 'away',
+									action: (e) => {
+                                        console.log('away => Lewis METUGE NGALAME @ 04 Startups');
+                                    },
+								},
+								{
+									icon: 'circle',
+									name: t('sad'),
+									modifier: 'busy',
+									action: (e) => {
+                                        console.log('busy => Lewis METUGE NGALAME @ 04 Startups');
+                                    },
+								},
+								{
+									icon: 'circle',
+									name: t('confused'),
+									modifier: 'offline',
+									action: (e) => {
+                                        console.log('offline => Lewis METUGE NGALAME @ 04 Startups');
+                                    },
+								},
+							],
+                        },
+						{
+							items: AccountBox.getItems().map((item) => {
+								let action;
+
+								if (item.href) {
+									action = () => {
+										FlowRouter.go(item.href);
+										popover.close();
+									};
+								}
+
+								if (item.sideNav) {
+									action = () => {
+										SideNav.setFlex(item.sideNav);
+										SideNav.openFlex();
+										popover.close();
+									};
+								}
+
+								return {
+									icon: item.icon,
+									name: t(item.name),
+									type: 'open',
+									id: item.name,
+									href: item.href,
+									sideNav: item.sideNav,
+									action,
+								};
+							}).concat([adminOption]),
+						}
+					],
+				},
+			],
+			currentTarget: e.currentTarget,
+			offsetVertical: e.currentTarget.clientHeight + 10,
+		};
+
+		popover.open(config);
+	},
 }];
 Template.sidebarHeader.helpers({
 	myUserInfo() {
