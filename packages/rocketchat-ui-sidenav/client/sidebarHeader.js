@@ -236,7 +236,8 @@ const toolbarButtons = (user) => [{
 
 		popover.open(config);
 	},
-},{
+},
+{
 	name: t('User Mood'),
 	icon: 'emoji',
 	condition: () => AccountBox.getItems().length || hasAtLeastOnePermission(['manage-emoji', 'manage-integrations', 'manage-oauth-apps', 'manage-own-integrations', 'manage-sounds', 'view-logs', 'view-privileged-setting', 'view-room-administration', 'view-statistics', 'view-user-administration']),
@@ -269,7 +270,7 @@ const toolbarButtons = (user) => [{
 									icon: 'circle',
 									name: t('happy'),
 									modifier: 'online',
-									action: (e) => {
+									action: () => {
                                         console.log('online => Lewis METUGE NGALAME @ 04 Startups');
                                     },
 								},
@@ -277,24 +278,24 @@ const toolbarButtons = (user) => [{
 									icon: 'circle',
 									name: t('uncertain'),
 									modifier: 'away',
-									action: (e) => {
-                                        console.log('away => Lewis METUGE NGALAME @ 04 Startups');
+									action: () => {
+                                        console.log('online => Lewis METUGE NGALAME @ 04 Startups');
                                     },
 								},
 								{
 									icon: 'circle',
 									name: t('sad'),
 									modifier: 'busy',
-									action: (e) => {
-                                        console.log('busy => Lewis METUGE NGALAME @ 04 Startups');
+									action: () => {
+                                        console.log('online => Lewis METUGE NGALAME @ 04 Startups');
                                     },
 								},
 								{
 									icon: 'circle',
 									name: t('confused'),
 									modifier: 'offline',
-									action: (e) => {
-                                        console.log('offline => Lewis METUGE NGALAME @ 04 Startups');
+									action: () => {
+                                        console.log('online => Lewis METUGE NGALAME @ 04 Startups');
                                     },
 								},
 							],
@@ -304,14 +305,14 @@ const toolbarButtons = (user) => [{
 								let action;
 
 								if (item.href) {
-									action = () => {
+									action = (e) => {
 										FlowRouter.go(item.href);
 										popover.close();
 									};
 								}
 
 								if (item.sideNav) {
-									action = () => {
+									action = (e) => {
 										SideNav.setFlex(item.sideNav);
 										SideNav.openFlex();
 										popover.close();
@@ -328,7 +329,7 @@ const toolbarButtons = (user) => [{
 									action,
 								};
 							}).concat([adminOption]),
-						}
+						},
 					],
 				},
 			],
