@@ -299,20 +299,20 @@ const toolbarButtons = (user) => [{
 									},
 								},
 							],
-                        },
+						},
 						{
 							items: AccountBox.getItems().map((item) => {
 								let action;
 
 								if (item.href) {
-									action = (e) => {
+									action = () => {
 										FlowRouter.go(item.href);
 										popover.close();
 									};
 								}
 
 								if (item.sideNav) {
-									action = (e) => {
+									action = () => {
 										SideNav.setFlex(item.sideNav);
 										SideNav.openFlex();
 										popover.close();
