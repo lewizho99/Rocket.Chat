@@ -21,17 +21,17 @@ const initChart = function(elem, userMood) {
 					'rgba(0,0,0,.2)',
 					'rgba(0,0,0,.2)',
 				],
-				borderWidth: 1
-			}]
+				borderWidth: 1,
+			}],
 		},
 		options: {
 			cutoutPercentage: 50,
-		}
+		},
 	});
 	return MyChartObj;
-}
+};
 
 export {
 	MyChartObj,
 	initChart,
-}
+};

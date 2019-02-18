@@ -21,7 +21,7 @@ Template.umchart.rendered = function() {
 		userMood = JSON.parse(window.localStorage.getItem('userMood'));
 	}
 
-    const chartDiv = this.find('#chartDiv');
+	const chartDiv = this.find('#chartDiv');
 	MyChartObj = initChart(chartDiv, userMood);
 	console.log(MyChartObj);
-}
+};
