@@ -274,10 +274,10 @@ const toolbarButtons = (user) => [{
 										const userMood = JSON.parse(window.localStorage.getItem('userMood'));
 										userMood.happy++;
 										window.localStorage.setItem('userMood', JSON.stringify(userMood));
-										console.log(`Happy has ${userMood.happy} clicks`);
+										console.log(`Happy has ${ userMood.happy } clicks`);
 										if (FlowRouter.current().path === '/umchart') {
 											MyChartObj.data.datasets[0].data[i] = userMood.happy;
-											MyChartObj.data.labels[i] = 'Happy ('+userMood.happy+')';
+											MyChartObj.data.labels[i] = `Happy (${ userMood.happy })`;
 											MyChartObj.update();
 										}
 									},
@@ -291,10 +291,10 @@ const toolbarButtons = (user) => [{
 										const userMood = JSON.parse(window.localStorage.getItem('userMood'));
 										userMood.uncertain++;
 										window.localStorage.setItem('userMood', JSON.stringify(userMood));
-										console.log('Uncertain has ' + userMood.uncertain + ' clicks');
+										console.log(`Uncertain has ${ userMood.uncertain } clicks`);
 										if (FlowRouter.current().path === '/umchart') {
 											MyChartObj.data.datasets[0].data[i] = userMood.uncertain;
-											MyChartObj.data.labels[i] = 'Uncertain ('+userMood.uncertain+')';
+											MyChartObj.data.labels[i] = `Uncertain (${ userMood.uncertain })`;
 											MyChartObj.update();
 										}
 									},
@@ -308,10 +308,10 @@ const toolbarButtons = (user) => [{
 										const userMood = JSON.parse(window.localStorage.getItem('userMood'));
 										userMood.sad++;
 										window.localStorage.setItem('userMood', JSON.stringify(userMood));
-										console.log('Sad has ' + userMood.sad + ' clicks');
+										console.log(`Sad has ${ userMood.sad } clicks`);
 										if (FlowRouter.current().path === '/umchart') {
 											MyChartObj.data.datasets[0].data[i] = userMood.sad;
-											MyChartObj.data.labels[i] = 'Uncertain ('+userMood.sad+')';
+											MyChartObj.data.labels[i] = `Uncertain (${ userMood.sad })`;
 											MyChartObj.update();
 										}
 									},
@@ -325,10 +325,10 @@ const toolbarButtons = (user) => [{
 										const userMood = JSON.parse(window.localStorage.getItem('userMood'));
 										userMood.confused++;
 										window.localStorage.setItem('userMood', JSON.stringify(userMood));
-										console.log('Confused has ' + userMood.confused + ' clicks');
+										console.log(`Confused has ${ userMood.confused } clicks`);
 										if (FlowRouter.current().path === '/umchart') {
 											MyChartObj.data.datasets[0].data[i] = userMood.confused;
-											MyChartObj.data.labels[i] = 'Confused ('+userMood.confused+')';
+											MyChartObj.data.labels[i] = `Confused (${ userMood.confused })`;
 											MyChartObj.update();
 										}
 									},
