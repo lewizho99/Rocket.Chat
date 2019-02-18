@@ -90,4 +90,8 @@ import './components/header/headerRoom.html';
 import './components/header/headerRoom';
 import './components/contextualBar.html';
 import './components/contextualBar';
+
+import './views/app/umchart.html';
+import './views/app/umchart';
+
 export { getAvatarUrFromUsername } from 'meteor/rocketchat:utils';

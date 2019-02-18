@@ -16,6 +16,9 @@ import { ChatMessage } from './models/ChatMessage';
 import { RoomRoles } from './models/RoomRoles';
 import { UserAndRoom } from './models/UserAndRoom';
 import { UserRoles } from './models/UserRoles';
+
+import { UserMoods } from './models/UserMoods';
+
 import { AuthzCachedCollection, ChatPermissions } from './models/ChatPermissions';
 import CustomSounds from './models/CustomSounds';
 import _ from 'underscore';
@@ -49,4 +52,5 @@ export {
 	ChatSubscription,
 	Rooms,
 	CustomSounds,
+	UserMoods,
 };

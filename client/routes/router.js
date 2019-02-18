@@ -76,6 +76,25 @@ FlowRouter.route('/home', {
 	},
 });
 
+FlowRouter.route('/umchart', {
+	name: 'umchart',
+
+	action(params, queryParams) {
+		KonchatNotification.getDesktopPermission();
+		if (queryParams.saml_idp_credentialToken !== undefined) {
+			Accounts.callLoginMethod({
+				methodArguments: [{
+					saml: true,
+					credentialToken: queryParams.saml_idp_credentialToken,
+				}],
+				userCallback() { BlazeLayout.render('main', { center: 'umchart' }); },
+			});
+		} else {
+			BlazeLayout.render('main', { center: 'umchart' });
+		}
+	},
+});
+
 FlowRouter.route('/directory', {
 	name: 'directory',
 

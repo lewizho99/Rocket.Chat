@@ -3,8 +3,10 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Template } from 'meteor/templating';
 import { popover } from 'meteor/rocketchat:ui-utils';
+import { MyChartObj } from 'meteor/rocketchat:ui-utils';
 import { t, getUserPreference, handleError } from 'meteor/rocketchat:utils';
 import { AccountBox, menu, SideNav } from 'meteor/rocketchat:ui-utils';
+import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import { callbacks } from 'meteor/rocketchat:callbacks';
 import { settings } from 'meteor/rocketchat:settings';
 import { hasAtLeastOnePermission } from 'meteor/rocketchat:authorization';
@@ -242,17 +244,15 @@ const toolbarButtons = (user) => [{
 	icon: 'emoji',
 	condition: () => AccountBox.getItems().length || hasAtLeastOnePermission(['manage-emoji', 'manage-integrations', 'manage-oauth-apps', 'manage-own-integrations', 'manage-sounds', 'view-logs', 'view-privileged-setting', 'view-room-administration', 'view-statistics', 'view-user-administration']),
 	action: (e) => {
-		let adminOption;
+		let umCharts;
 		if (hasAtLeastOnePermission(['manage-emoji', 'manage-integrations', 'manage-oauth-apps', 'manage-own-integrations', 'manage-sounds', 'view-logs', 'view-privileged-setting', 'view-room-administration', 'view-statistics', 'view-user-administration'])) {
-			adminOption = {
+			umCharts = {
 				icon: 'customize',
-				name: t('Administration'),
+				name: t('Chart'),
 				type: 'open',
-				id: 'administration',
+				id: 'Chart',
 				action: () => {
-					SideNav.setFlex('adminFlex');
-					SideNav.openFlex();
-					FlowRouter.go('admin-info');
+					FlowRouter.go('umchart');
 					popover.close();
 				},
 			};
@@ -267,35 +267,71 @@ const toolbarButtons = (user) => [{
 							title: t('User'),
 							items: [
 								{
-									icon: 'circle',
-									name: t('happy'),
+									icon: 'emoji',
+									name: t('Happy'),
 									modifier: 'online',
 									action: () => {
-										console.log('online => Lewis METUGE NGALAME @ 04 Startups');
+										let i = 0;
+										let userMood = JSON.parse(window.localStorage.getItem('userMood'));
+										userMood.happy++;
+										window.localStorage.setItem('userMood', JSON.stringify(userMood));
+										console.log('Happy has ' + userMood.happy + ' clicks');
+										if(FlowRouter.current().path === '/umchart'){
+											MyChartObj.data.datasets[0].data[i] = userMood.happy;
+											MyChartObj.data.labels[i] = 'Happy ('+userMood.happy+')';
+											MyChartObj.update();
+										}
 									},
 								},
 								{
-									icon: 'circle',
-									name: t('uncertain'),
+									icon: 'emoji',
+									name: t('Uncertain'),
 									modifier: 'away',
 									action: () => {
-										console.log('online => Lewis METUGE NGALAME @ 04 Startups');
+										let i = 1;
+										let userMood = JSON.parse(window.localStorage.getItem('userMood'));
+										userMood.uncertain++;
+										window.localStorage.setItem('userMood', JSON.stringify(userMood));
+										console.log('Uncertain has ' + userMood.uncertain + ' clicks');
+										if(FlowRouter.current().path === '/umchart'){
+											MyChartObj.data.datasets[0].data[i] = userMood.uncertain;
+											MyChartObj.data.labels[i] = 'Uncertain ('+userMood.uncertain+')';
+											MyChartObj.update();
+										}
 									},
 								},
 								{
-									icon: 'circle',
-									name: t('sad'),
+									icon: 'emoji',
+									name: t('Sad'),
 									modifier: 'busy',
 									action: () => {
-										console.log('online => Lewis METUGE NGALAME @ 04 Startups');
+										let i = 2;
+										let userMood = JSON.parse(window.localStorage.getItem('userMood'));
+										userMood.sad++;
+										window.localStorage.setItem('userMood', JSON.stringify(userMood));
+										console.log('Sad has ' + userMood.sad + ' clicks');
+										if(FlowRouter.current().path === '/umchart'){
+											MyChartObj.data.datasets[0].data[i] = userMood.sad;
+											MyChartObj.data.labels[i] = 'Uncertain ('+userMood.sad+')';
+											MyChartObj.update();
+										}
 									},
 								},
 								{
-									icon: 'circle',
-									name: t('confused'),
+									icon: 'emoji',
+									name: t('Confused'),
 									modifier: 'offline',
 									action: () => {
-										console.log('online => Lewis METUGE NGALAME @ 04 Startups');
+										let i = 3;
+										let userMood = JSON.parse(window.localStorage.getItem('userMood'));
+										userMood.confused++;
+										window.localStorage.setItem('userMood', JSON.stringify(userMood));
+										console.log('Confused has ' + userMood.confused + ' clicks');
+										if(FlowRouter.current().path === '/umchart'){
+											MyChartObj.data.datasets[0].data[i] = userMood.confused;
+											MyChartObj.data.labels[i] = 'Confused ('+userMood.confused+')';
+											MyChartObj.update();
+										}
 									},
 								},
 							],
@@ -328,7 +364,7 @@ const toolbarButtons = (user) => [{
 									sideNav: item.sideNav,
 									action,
 								};
-							}).concat([adminOption]),
+							}).concat([umCharts]),
 						},
 					],
 				},
