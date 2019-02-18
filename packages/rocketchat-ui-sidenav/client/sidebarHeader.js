@@ -6,7 +6,6 @@ import { popover } from 'meteor/rocketchat:ui-utils';
 import { MyChartObj } from 'meteor/rocketchat:ui-utils';
 import { t, getUserPreference, handleError } from 'meteor/rocketchat:utils';
 import { AccountBox, menu, SideNav } from 'meteor/rocketchat:ui-utils';
-import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import { callbacks } from 'meteor/rocketchat:callbacks';
 import { settings } from 'meteor/rocketchat:settings';
 import { hasAtLeastOnePermission } from 'meteor/rocketchat:authorization';
@@ -271,12 +270,12 @@ const toolbarButtons = (user) => [{
 									name: t('Happy'),
 									modifier: 'online',
 									action: () => {
-										let i = 0;
-										let userMood = JSON.parse(window.localStorage.getItem('userMood'));
+										const i = 0;
+										const userMood = JSON.parse(window.localStorage.getItem('userMood'));
 										userMood.happy++;
 										window.localStorage.setItem('userMood', JSON.stringify(userMood));
-										console.log('Happy has ' + userMood.happy + ' clicks');
-										if(FlowRouter.current().path === '/umchart'){
+										console.log(`Happy has ${userMood.happy} clicks`);
+										if (FlowRouter.current().path === '/umchart') {
 											MyChartObj.data.datasets[0].data[i] = userMood.happy;
 											MyChartObj.data.labels[i] = 'Happy ('+userMood.happy+')';
 											MyChartObj.update();
@@ -288,12 +287,12 @@ const toolbarButtons = (user) => [{
 									name: t('Uncertain'),
 									modifier: 'away',
 									action: () => {
-										let i = 1;
-										let userMood = JSON.parse(window.localStorage.getItem('userMood'));
+										const i = 1;
+										const userMood = JSON.parse(window.localStorage.getItem('userMood'));
 										userMood.uncertain++;
 										window.localStorage.setItem('userMood', JSON.stringify(userMood));
 										console.log('Uncertain has ' + userMood.uncertain + ' clicks');
-										if(FlowRouter.current().path === '/umchart'){
+										if (FlowRouter.current().path === '/umchart') {
 											MyChartObj.data.datasets[0].data[i] = userMood.uncertain;
 											MyChartObj.data.labels[i] = 'Uncertain ('+userMood.uncertain+')';
 											MyChartObj.update();
@@ -305,12 +304,12 @@ const toolbarButtons = (user) => [{
 									name: t('Sad'),
 									modifier: 'busy',
 									action: () => {
-										let i = 2;
-										let userMood = JSON.parse(window.localStorage.getItem('userMood'));
+										const i = 2;
+										const userMood = JSON.parse(window.localStorage.getItem('userMood'));
 										userMood.sad++;
 										window.localStorage.setItem('userMood', JSON.stringify(userMood));
 										console.log('Sad has ' + userMood.sad + ' clicks');
-										if(FlowRouter.current().path === '/umchart'){
+										if (FlowRouter.current().path === '/umchart') {
 											MyChartObj.data.datasets[0].data[i] = userMood.sad;
 											MyChartObj.data.labels[i] = 'Uncertain ('+userMood.sad+')';
 											MyChartObj.update();
@@ -322,12 +321,12 @@ const toolbarButtons = (user) => [{
 									name: t('Confused'),
 									modifier: 'offline',
 									action: () => {
-										let i = 3;
-										let userMood = JSON.parse(window.localStorage.getItem('userMood'));
+										const i = 3;
+										const userMood = JSON.parse(window.localStorage.getItem('userMood'));
 										userMood.confused++;
 										window.localStorage.setItem('userMood', JSON.stringify(userMood));
 										console.log('Confused has ' + userMood.confused + ' clicks');
-										if(FlowRouter.current().path === '/umchart'){
+										if (FlowRouter.current().path === '/umchart') {
 											MyChartObj.data.datasets[0].data[i] = userMood.confused;
 											MyChartObj.data.labels[i] = 'Confused ('+userMood.confused+')';
 											MyChartObj.update();
